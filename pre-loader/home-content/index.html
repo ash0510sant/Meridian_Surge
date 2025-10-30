@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meridian Surge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="light">
+ 
+    <h1 class="counter">0</h1>
+ 
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-btn active" data-theme="light">Light</button>
+        <button class="theme-btn" data-theme="dark">Dark</button>
+        <button class="theme-btn" data-theme="system">System</button>
+    </div>
+ 
+    <!-- Background Overlay Bars -->
+    <div class="overlay">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+ 
+    <div class="container">
+        <nav>
+            <!-- Brand Logo -->
+            <a href="#" class="nav-brand">
+                <img src="light-ms-logo.png" alt="MeridianSurge" class="nav-logo" id="nav-logo">
+            </a>
+        </nav>
+ 
+        <!-- iPhone-style Dynamic Island -->
+        <div class="dynamic-island">
+            <div class="island-nav">
+                <button type="button" class="island-btn active" data-page="home">Home</button>
+                <button type="button" class="island-btn" data-page="credits">Credits</button>
+                <button type="button" class="island-btn" data-page="about">About Us</button>
+            </div>
+        </div>
+ 
+        <div class="header">
+            <!-- GIF Slideshow Container -->
+            <div class="slideshow-container">
+                <!-- Slideshow wrapper -->
+                <div class="slideshow-wrapper">
+                    <!-- Navigation arrows -->
+                    <button class="nav-arrow nav-arrow-left" id="prevSlide">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Slides container -->
+                    <div class="slides-container">
+                        <div class="slide active">
+                            <img src="mod1.gif" alt="GIF 1" class="slide-gif">
+                        </div>
+                        <div class="slide">
+                            <img src="mod2.gif" alt="GIF 2" class="slide-gif">
+                        </div>
+                        <div class="slide">
+                            <img src="mod3.gif" alt="GIF 3" class="slide-gif">
+                        </div>
+                        <div class="slide">
+                            <img src="mod4.gif" alt="GIF 4" class="slide-gif">
+                        </div>
+                        <div class="slide">
+                            <img src="mod5.gif" alt="GIF 5" class="slide-gif">
+                        </div>
+                        <div class="slide">
+                            <img src="mod6.gif" alt="GIF 6" class="slide-gif">
+                        </div>
+                    </div>
+                    
+                    <button class="nav-arrow nav-arrow-right" id="nextSlide">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Slide indicators -->
+                <div class="slide-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                    <span class="indicator" data-slide="3"></span>
+                    <span class="indicator" data-slide="4"></span>
+                    <span class="indicator" data-slide="5"></span>
+                </div>
+                
+                <!-- Get Started Button -->
+                <div class="get-started-container">
+                    <button class="get-started-btn" id="getStartedBtn">
+                        <span>Get Started</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"></script>
+    <script src="script.js"></script>
+ 
+</body>
+</html>

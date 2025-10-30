@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meridian Surge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Meridian Surge</h1>
+            <p>An NLP Visulaize which Transcend Text</p>
+        </div>
+
+        <div class="module-tabs">
+            <button class="tab-btn active" data-module="module1">📚 Introduction</button>
+            <button class="tab-btn" data-module="module2" onclick="window.location.href='/Sharath_Modules/Multitude-Model-master/index.html'">🔤 Word Analysis</button>
+            <button class="tab-btn" data-module="module3" onclick="window.location.href='/Sharath_Modules/Multitude-Model-master/index.html'">🌳 Syntax Analysis</button>
+            <button class="tab-btn" data-module="module4">🧠 Semantic Analysis</button>
+            <button class="tab-btn" data-module="module5">💬 Discourse Processing</button>
+            <button class="tab-btn" data-module="module6">🎯 Applications</button>
+        </div>
+
+        <!-- MODULE 1: INTRODUCTION TO NLP -->
+        <div class="module-content active" id="module1">
+            <h2 class="module-title">📚 Module 1: Introduction to NLP</h2>
+            <div class="input-group">
+                <label for="m1-text">Enter Text for Language Detection & Preprocessing:</label>
+                <textarea id="m1-text" placeholder="Enter text in English, Hindi, Tamil, Telugu, or Bengali...">The recent economic reforms announced by the government have received mixed reactions. यह सरकार की नई नीति है।</textarea>
+            </div>
+            <button class="btn" onclick="analyzeFoundation()">🔍 Analyze Foundation</button>
+            <div class="loading" id="m1-loading">
+                <div class="spinner"></div>
+                <p>Analyzing language and preprocessing...</p>
+            </div>
+            <div class="results" id="m1-results" style="display:none;"></div>
+        </div>
+
+        <!-- MODULE 2: WORD LEVEL ANALYSIS -->
+        <div class="module-content" id="module2">
+            <h2 class="module-title">🔤 Module 2: Word Level Analysis</h2>
+<p>Module 2 : Word Level Analysis is divided into 6 parts.</p>
+<br>
+<p><b>Part 1 : Tokenization • Stemming • Lemmatization </b></p>
+<p><b>Part 2 : Interactive: Regular Expressions & Unknown Words </b></p>
+<p><b>Part 3 : Morphology Sandbox: Survey • Models • FST Parsing </b></p>
+<p><b>Part 4 : Smoothing Demo (Laplace & Good-Turing) </b></p>
+<p><b>Part 5 : Porter Stemmer (Lexicon-free) </b></p>
+<p><b>Part 6 : N-gram (Unsmoothed MLE) & Perplexity </b></p>
+<br>
+<p><b>Glossary & Examples : </b>Glossary & Examples are attached at the end of this module for reference purposes.</p>
+        <div id="m2-advanced-analysis" class="analysis-box">
+
+  <h3>🔤 Tokenization • Stemming • Lemmatization</h3>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<p>Move your cursor over any words below to see their definitions.</p>
+</body>
+</html>
+
+
+<!-- Hover-based NLP Definitions -->
+<div class="nlp-defs-hover">
+  <span class="nlp-term" data-def="Splitting text into smaller units (tokens) such as words, subwords, or sentences. Example: 'I love NLP.' → ['I','love','NLP','.']">Tokenization</span> •
+  <span class="nlp-term" data-def="Reducing words to a crude root (stem) by chopping affixes, usually with rule-based algorithms. Example: 'playing','played' → 'play'.">Stemming</span> •
+  <span class="nlp-term" data-def="Converting words to their canonical dictionary form (lemma) using vocabulary + morphology. Example: 'better' → 'good'; 'running' → 'run'.">Lemmatization</span>
+</div>
+
+<style>
+  .nlp-defs-hover {
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .nlp-term {
+    position: relative;
+    cursor: help;
+    font-weight: 600;
+    color: #0366d6;
+    padding: 2px 6px;
+  }
+
+  /* Tooltip box centered on screen */
+  .nlp-term::after {
+    content: attr(data-def);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: #ffffff;
+    color: #000000;
+    font-size: 0.95rem;
+    padding: 12px 16px;
+    border-radius: 10px;
+    width: max-content;
+    max-width: 360px;
+    line-height: 1.5;
+    border: 2px solid #0366d6;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.25);
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 9999;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .nlp-term:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Remove the small arrow (not needed for center popup) */
+  .nlp-term::before {
+    display: none;
+  }
+</style>
+<br>
+  
+  <div class="input-group">
+    <label for="m2-advanced-text">Enter Text for Analysis:</label>
+    <textarea id="m2-advanced-text" placeholder="Type any sentence..."></textarea>
+  </div>
+  <button class="btn" onclick="runAdvancedWordAnalysis()">🚀 Run Analysis</button>
+  <div class="loading" id="m2-advanced-loading">
+    <div class="spinner"></div>
+    <p>Processing text...</p>
+  </div>
+  <div class="results" id="m2-advanced-results" style="display:none;"></div>
+</div>
+
+<div id="m2-regex-unknown" class="analysis-box">
+  <h3>📝 Interactive: Regular Expressions & Unknown Words</h3>
+  
+<p>Move your cursor over any words below to see their definitions.</p>
+
+  <!-- Hover-based Definitions: Regular Expression & Unknown Words -->
+<div class="nlp-defs-hover">
+  <span class="nlp-term" data-def="Regular Expression: A sequence of characters that define a search pattern, often for string-matching within texts (e.g., email validation, token matching).">Regular Expression with Types</span> •
+  <span class="nlp-term" data-def="Unknown Words: In NLP, words not found in the training vocabulary. Open vocabulary tasks allow handling unseen words, while closed vocabulary tasks restrict input to a fixed known list.">Unknown Words: Open vs Closed Vocabulary Tasks</span>
+</div>
+
+<style>
+  .nlp-defs-hover { font-family: system-ui, sans-serif; font-size: 1rem; text-align: center; margin-top: 40px; }
+  .nlp-term { position: relative; cursor: help; font-weight: 600; color: #0366d6; padding: 2px 6px; }
+  .nlp-term::after {
+    content: attr(data-def); position: fixed; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: #fff; color: #000; font-size: 0.95rem; padding: 12px 16px;
+    border-radius: 10px; max-width: 360px; line-height: 1.5;
+    border: 2px solid #0366d6; box-shadow: 0 6px 22px rgba(0,0,0,0.25);
+    opacity: 0; visibility: hidden; transition: 0.25s ease; z-index: 9999;
+    white-space: normal; text-align: left;
+  }
+  .nlp-term:hover::after { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
+  .nlp-term::before { display: none; }
+</style>
+
+
+  <div class="input-group">
+    <br>
+    <label for="regex-pattern">Regular Expression Pattern:</label>
+    <input type="text" id="regex-pattern" placeholder="e.g. \\b[A-Z][a-z]+\\b">
+  </div>
+  <div class="input-group">
+    <label for="regex-text">Text to Test:</label>
+    <textarea id="regex-text" placeholder="Type text to run your regex on..."></textarea>
+  </div>
+
+  <div class="input-group">
+    <label for="known-words">Known Vocabulary (comma-separated):</label>
+    <input type="text" id="known-words" placeholder="e.g. the, children, were">
+  </div>
+  <div class="input-group">
+    <label for="unknown-text">Sentence to Check for Unknown Words:</label>
+    <textarea id="unknown-text" placeholder="Type a sentence to check for unknown words..."></textarea>
+  </div>
+
+  <button class="btn" onclick="runRegexUnknownDemo()">🚀 Run Demo</button>
+
+  <div class="loading" id="regex-unknown-loading">
+    <div class="spinner"></div>
+    <p>Processing input...</p>
+  </div>
+  <div class="results" id="regex-unknown-results" style="display:none;"></div>
+</div>
+
+<div id="m2-morphology" class="analysis-box">
+  <h3>🔧 Morphology Sandbox: Survey • Models • FST Parsing</h3>
+
+<p>Move your cursor over any words below to see their definitions.</p>
+
+  <!-- Hover-based Definitions: English Morphology -->
+<div class="nlp-defs-hover">
+  <span class="nlp-term" data-def="Inflectional Morphology: Modifies a word to express grammatical categories (e.g., walk → walks, walked).">Inflectional Morphology</span> •
+  <span class="nlp-term" data-def="Derivational Morphology: Creates new words by adding prefixes/suffixes (e.g., happy → happiness, teach → teacher).">Derivational Morphology</span> •
+  <span class="nlp-term" data-def="Dictionary Lookup: Basic morphological model using word lists and entries.">Dictionary Lookup</span> •
+  <span class="nlp-term" data-def="Finite State Morphology: Uses finite-state machines to model morphological processes.">Finite State Morphology</span> •
+  <span class="nlp-term" data-def="Morphological Parsing with FST: Analyzing words into morphemes using finite-state transducers for recognition and generation.">Morphological Parsing with FST</span>
+</div>
+
+<!-- CSS is the same as above -->
+
+<br>
+  <div class="result-item">
+    <strong>Quick Survey:</strong>
+    <p style="margin-top:8px;">
+      <b>English Morphology</b> studies word structure. <b>Inflectional morphology</b> changes grammatical form (e.g. play → played, cat → cats).
+      <b>Derivational morphology</b> creates new words/meanings (e.g. happy → happiness, modern → modernize).
+    </p>
+  </div>
+
+  <div class="input-group">
+    <label for="morph-input">Enter a word or sentence:</label>
+    <textarea id="morph-input" placeholder="e.g. the children were playing, happiness, modernized"></textarea>
+  </div>
+
+  <div class="input-group">
+    <label for="morph-known">Optional: Add known lemmas for dictionary lookup (comma-separated):</label>
+    <input id="morph-known" placeholder="e.g. play, child, happy, modern">
+  </div>
+
+  <button class="btn" onclick="runMorphologyDemo()">🔬 Run Morphology Demo</button>
+
+  <div class="loading" id="morph-loading"><div class="spinner"></div><p>Analyzing morphology...</p></div>
+  <div class="results" id="morph-results" style="display:none;"></div>
+</div>
+
+
+<div id="smoothing-ppt-box" class="analysis-box">
+  <h3>🎯 Smoothing Demo (Laplace & Good-Turing) </h3>
+
+<p>Move your cursor over any words below to see their definitions.</p>
+
+  <!-- Hover-based Definitions: Smoothing -->
+<div class="nlp-defs-hover">
+  <span class="nlp-term" data-def="Laplace Smoothing: Adds one (or k) to all counts to avoid zero probabilities for unseen events.">Laplace Smoothing</span> •
+  <span class="nlp-term" data-def="Good-Turing Discounting: Adjusts observed counts by redistributing some probability mass to unseen events.">Good-Turing Discounting</span>
+</div>
+
+<!-- CSS is the same as above -->
+
+<br>
+  <div class="input-group">
+    <label for="ppt-train">Training Corpus:</label>
+    <textarea id="ppt-train" placeholder="Enter/paste training text here">the cat sat on the mat the cat ate a rat</textarea>
+  </div>
+
+  <div class="input-group">
+    <label for="ppt-test">Test Sentence:</label>
+    <textarea id="ppt-test" placeholder="Enter test sentence here">the cat sat on the rat</textarea>
+  </div>
+
+  <div class="input-group">
+    <label for="ppt-n">N-gram order:</label>
+    <select id="ppt-n">
+      <option value="1">Unigram</option>
+      <option value="2" selected>Bigram</option>
+      <option value="3">Trigram</option>
+    </select>
+    <button class="btn" onclick="runPptSmoothingDemo()">🚀 Compute </button>
+  </div>
+
+  <div class="loading" id="ppt-loading">
+    <div class="spinner"></div>
+    <p>Computing MLE • Laplace • Good-Turing (step by step)...</p>
+  </div>
+
+  <div class="results" id="ppt-results" style="display:none;"></div>
+</div>
+
+
+<!-- Porter Stemmer Box -->
+<div id="porter-full-box" class="analysis-box">
+  <h3>🪓 Porter Stemmer (Lexicon-free)</h3>
+
+<p>Move your cursor over any words below to see their definitions.</p>
+
+  <!-- Hover-based Definitions: FST & Porter Stemmer -->
+<div class="nlp-defs-hover">
+  <span class="nlp-term" data-def="Lexicon-free FST: A finite state transducer that performs morphological operations without relying on a predefined dictionary.">Lexicon-free FST</span> •
+  <span class="nlp-term" data-def="Porter Stemmer Algorithm: A rule-based stemming algorithm that reduces words to stems using suffix-stripping rules (e.g., 'running' → 'run').">Porter Stemmer Algorithm</span>
+</div>
+
+<!-- CSS is the same as above -->
+
+<br>
+  <div class="input-group">
+    <label for="porter-full-input">Enter a word or sentence (one or many words):</label>
+    <textarea id="porter-full-input" placeholder="e.g. MULTIDIMENSIONAL\nCHARACTERIZATION\nthe children were playing"></textarea>
+  </div>
+
+  <div style="display:flex;gap:12px;align-items:center;margin-top:8px;">
+    <button class="btn" onclick="runPorterFull()">Run Porter Stemmer</button>
+  </div>
+
+  <div class="loading" id="porter-full-loading"><div class="spinner"></div><p>Stemming...</p></div>
+  <div class="results" id="porter-full-results" style="display:none;"></div>
+</div>
+
+<!-- N-gram Box -->
+<div id="ngram-full-box" class="analysis-box" style="margin-top:18px;">
+  <h3>📊 N-gram (Unsmoothed MLE) & Perplexity </h3>
+
+<p>Move your cursor over any words below to see their definitions.</p>
+
+  <!-- Hover-based Definitions: N-grams -->
+<div class="nlp-defs-hover">
+  <span class="nlp-term" data-def="Perplexity: A measure of how well a probabilistic model predicts a sample. Lower perplexity means better prediction.">Evaluating N-grams: Perplexity</span> •
+  <span class="nlp-term" data-def="Grams & Variations: Bigram (2 words), Trigram (3 words), etc.">Grams and Variations</span> •
+  <span class="nlp-term" data-def="Simple (Unsmoothed) N-grams: Probabilities estimated directly from counts, with zero probability for unseen events.">Simple (Unsmoothed) N-grams</span> •
+  <span class="nlp-term" data-def="N-gram Sensitivity: Performance depends heavily on the size and quality of the training corpus.">N-gram Sensitivity to Corpus</span>
+</div>
+
+<!-- CSS is the same as above -->
+
+<br>
+  <div class="input-group">
+    <label for="ngram-train">Training Corpus:</label>
+    <textarea id="ngram-train" placeholder="Enter training corpus here">the cat sat on the mat the cat ate a rat</textarea>
+  </div>
+
+  <div class="input-group">
+    <label for="ngram-test">Test Sentence:</label>
+    <textarea id="ngram-test" placeholder="Enter test sentence here">the cat sat on the rat</textarea>
+  </div>
+
+  <div style="display:flex;gap:12px;align-items:center;margin-top:8px;">
+    <label for="ngram-order">Order:</label>
+    <select id="ngram-order"><option value="1">Unigram</option><option value="2" selected>Bigram</option><option value="3">Trigram</option></select>
+    <button class="btn" onclick="runNgramFull()">Compute (MLE + Perplexity)</button>
+  </div>
+
+  <div class="loading" id="ngram-full-loading"><div class="spinner"></div><p>Building n-gram model...</p></div>
+  <div class="results" id="ngram-full-results" style="display:none;"></div>
+</div>
+
+<!-- Hover-Definitions Widget -->
+<div id="hover-definitions" class="analysis-box" style="margin-top:20px;">
+  <h3>📚 Glossary & Examples </h3>
+  <p class="ss-small">Move your cursor over any <strong>View</strong> button to see definition, example & diagram.</p>
+
+  <div id="hover-buttons" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px; margin-top:12px;">
+    <!-- Buttons are generated by JS; keep this container empty -->
+  </div>
+</div>
+
+<!-- These two elements are inserted once and reused for all terms -->
+<div id="hover-panel-backdrop" style="display:none;"></div>
+<div id="hover-panel" style="display:none;" role="dialog" aria-modal="true" aria-hidden="true"></div>
+
+
+        </div>
+        
+        <!-- MODULE 3: SYNTAX ANALYSIS -->
+        <div class="module-content" id="module3">
+           <h2 class="module-title">🔤 Module 3: 
+Syntax analysis </h2>
+<p>Module 3 : 
+Syntax analysis  is divided into 3 parts.</p>
+<br>
+<p><b>Part 1 : Part-of-Speech Tagging </b></p>
+<p><b>Part 2 : HMM Viterbi POS Tagging </b></p>
+<p><b>Part 3 : Discriminative Models — MaxEnt & CRF </b></p>
+<br>
+<p><b>Glossary & Examples : </b>Glossary & Examples are attached at the end of this module for reference purposes.</p>
+            <div class="results" id="m3-results" style="display:none;"></div>
+
+            <div id="pos-tagging" class="analysis-box">
+  <h3>🗂️ Part-of-Speech Tagging</h3>
+  <p>Move your cursor over the word below to see their definition.</p>
+  <div class="hover-card">
+  <div class="hover-title">🧩 Part-of-Speech Tagging</div>
+  <div class="hover-content">
+    <h4>Part-of-Speech (POS) Tagging</h4>
+    <p><b>Definition:</b> Assigns each word in a sentence its grammatical category such as noun, verb, adjective, etc.</p>
+    <p><b>Example:</b> “The cat sat on the mat” → The/DT cat/NN sat/VBD on/IN the/DT mat/NN</p>
+  </div>
+</div>
+
+  <div class="input-group">
+    <label for="pos-text">Enter a sentence:</label>
+    <textarea id="pos-text" placeholder="Type any sentence..."></textarea>
+  </div>
+  <button class="btn" onclick="runPOSTagging()">🚀 Run POS Tagger</button>
+  <div class="results" id="pos-results"></div>
+  </div>
+
+  <div id="hmm-viterbi" class="analysis-box">
+  <h3>🔢 HMM Viterbi POS Tagging</h3>
+   <p>Move your cursor over the word below to see their definition.</p>
+  <div class="hover-card">
+  <div class="hover-title">🤖 HMM Viterbi POS Tagging</div>
+  <div class="hover-content">
+    <h4>Hidden Markov Model (HMM) Viterbi Tagging</h4>
+    <p><b>Definition:</b> Uses transition and emission probabilities to find the most likely tag sequence for a sentence using the Viterbi dynamic programming algorithm.</p>
+    <p><b>Example:</b> For “The cat sat”, HMM calculates probabilities of tag paths like (DT NN VBD) and picks the most probable one.</p>
+  </div>
+</div>
+
+  <div class="input-group">
+    <label for="hmm-text">Enter a sentence:</label>
+    <textarea id="hmm-text" placeholder="e.g. The cat sat"></textarea>
+  </div>
+  <button class="btn" onclick="runViterbi()">Run HMM Viterbi</button>
+  <div class="results" id="hmm-results"></div>
+</div>
+
+<div id="crf" class="analysis-box">
+  <h3>🤖 Discriminative Models — MaxEnt & CRF</h3>
+   <p>Move your cursor over the word below to see their definition.</p>
+  <div class="hover-card">
+  <div class="hover-title">🧮 Discriminative Models — MaxEnt & CRF</div>
+  <div class="hover-content">
+    <h4>Discriminative Models (MaxEnt, CRF)</h4>
+    <p><b>Definition:</b> These models directly learn the conditional probability P(tags | words) using contextual and lexical features. They don’t assume independence between features.</p>
+    <p><b>Example:</b> CRF considers prefixes/suffixes like “-ed”, “-ing” and context like previous tags to label words accurately.</p>
+  </div>
+</div>
+
+  <div class="input-group">
+    <label for="crf-text">Enter a sentence:</label>
+    <textarea id="crf-text" placeholder="The cat sat on the mat"></textarea>
+  </div>
+  <button class="btn" onclick="runCRF()">Run Model</button>
+  <div class="results" id="crf-results"></div>
+</div>
+
+
+
+<div id="module3-definitions" class="analysis-box">
+  <h3>📚 Glossary & Examples</h3>
+  <p>Place your cursor on any card below to see its <b>definition</b> and <b>example</b>.</p>
+
+  <div class="concept-grid">
+    <!-- POS Tagging -->
+    <div class="concept-card">
+      <div class="front">🧩 POS Tagging</div>
+      <div class="back">
+        <h4>Part-of-Speech Tagging</h4>
+        <p><b>Definition:</b> Assigns grammatical categories (noun, verb, adjective, etc.) to each word in a sentence.</p>
+        <p><b>Example:</b> “The cat sat” → The/DT cat/NN sat/VBD</p>
+      </div>
+    </div>
+
+    <!-- Challenges -->
+    <div class="concept-card">
+      <div class="front">⚠️ POS Tagging Challenges</div>
+      <div class="back">
+        <h4>Difficulties in POS Tagging</h4>
+        <p><b>Definition:</b> Ambiguous words and unseen vocabulary make tagging difficult.</p>
+        <p><b>Example:</b> “Book” → noun in “a book”, verb in “to book a ticket”.</p>
+      </div>
+    </div>
+
+    <!-- HMM -->
+    <div class="concept-card">
+      <div class="front">🤖 HMM Viterbi Tagging</div>
+      <div class="back">
+        <h4>Hidden Markov Model (Viterbi)</h4>
+        <p><b>Definition:</b> Finds the most probable tag sequence using transition and emission probabilities between words and tags.</p>
+        <p><b>Example:</b> Computes P(tags | words) for “The cat sat”.</p>
+      </div>
+    </div>
+
+    <!-- HMM Issues -->
+    <div class="concept-card">
+      <div class="front">🚫 HMM Issues</div>
+      <div class="back">
+        <h4>Limitations of HMM POS Tagging</h4>
+        <p><b>Definition:</b> Assumes independence between tags, struggles with long-range dependencies and unknown words.</p>
+        <p><b>Example:</b> “Can” in “can opener” vs “can swim” → same word, different tags.</p>
+      </div>
+    </div>
+
+    <!-- Rule-based -->
+    <div class="concept-card">
+      <div class="front">🧠 Rule-based / Stochastic / Transformation</div>
+      <div class="back">
+        <h4>POS Tagging Approaches</h4>
+        <p><b>Definition:</b><br>
+          • <b>Rule-based:</b> Uses hand-crafted grammar rules.<br>
+          • <b>Stochastic:</b> Uses probabilities P(tag|word).<br>
+          • <b>Transformation-based:</b> Learns rules iteratively (e.g., Brill Tagger).</p>
+        <p><b>Example:</b> “He booked a ticket” → ‘booked’ correctly tagged as verb.</p>
+      </div>
+    </div>
+
+    <!-- CRF / MaxEnt -->
+    <div class="concept-card">
+      <div class="front">🧮 Discriminative Models (MaxEnt & CRF)</div>
+      <div class="back">
+        <h4>Discriminative Taggers</h4>
+        <p><b>Definition:</b> Directly model P(tags | words) using contextual and lexical features without independence assumptions.</p>
+        <p><b>Example:</b> CRF captures suffixes like “-ing” to predict verb tags.</p>
+      </div>
+    </div>
+
+    <!-- Parsers -->
+    <div class="concept-card">
+      <div class="front">🌳 Top-Down & Bottom-Up Parsing</div>
+      <div class="back">
+        <h4>Parsing Techniques</h4>
+        <p><b>Definition:</b> Analyze sentence structure according to grammar rules.<br>
+          • <b>Top-Down:</b> Starts from the root (S).<br>
+          • <b>Bottom-Up:</b> Combines words to form larger constituents.</p>
+        <p><b>Example:</b> “The cat sat on the mat.”</p>
+      </div>
+    </div>
+
+    <!-- Constituency -->
+    <div class="concept-card">
+      <div class="front">🧱 Modelling Constituency</div>
+      <div class="back">
+        <h4>Constituency Structure</h4>
+        <p><b>Definition:</b> Represents sentences as hierarchies of phrases like NP (Noun Phrase) and VP (Verb Phrase).</p>
+        <p><b>Example:</b> (S (NP (DT The) (NN cat)) (VP (VBD sat))).</p>
+      </div>
+    </div>
+
+    <!-- CYK -->
+    <div class="concept-card">
+      <div class="front">⬇️ CYK Parser (Bottom-Up)</div>
+      <div class="back">
+        <h4>CYK Algorithm</h4>
+        <p><b>Definition:</b> Dynamic-programming parsing algorithm using CNF grammar to determine sentence validity.</p>
+        <p><b>Example:</b> Builds table cells with possible non-terminals for spans of input words.</p>
+      </div>
+    </div>
+
+    <!-- Top Down -->
+    <div class="concept-card">
+      <div class="front">⬆️ Top-Down Parsers (Earley / Predictive)</div>
+      <div class="back">
+        <h4>Top-Down Parsing Models</h4>
+        <p><b>Definition:</b> <b>Earley Parser:</b> Chart-based, handles all CFGs.<br>
+          <b>Predictive Parser:</b> Uses lookahead for LL(1) grammars to choose correct production.</p>
+        <p><b>Example:</b> Predicts NP → DT NN when input begins with “The”.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+
+        <!-- MODULE 4: SEMANTIC ANALYSIS -->
+        <div class="module-content" id="module4">
+            <h2 class="module-title">🧠 Module 4: Semantic Analysis</h2>
+            
+            <div class="input-group">
+                <label for="m4-text">Enter Text for Semantic Analysis:</label>
+                <textarea id="m4-text" placeholder="Enter text for word sense disambiguation and named entity recognition...">Apple Inc. was founded by Steve Jobs in California. The company bank reported good financial results this year.</textarea>
+            </div>
+            <button class="btn" onclick="analyzeSemantics()">🧠 Analyze Semantics</button>
+            <button class="btn" onclick="findEntities()">👤 Find Entities</button>
+            <button class="btn" onclick="disambiguateWords()">🎯 Disambiguate Words</button>
+            <div class="loading" id="m4-loading">
+                <div class="spinner"></div>
+                <p>Analyzing semantics and extracting entities...</p>
+            </div>
+            <div class="results" id="m4-results" style="display:none;"></div>
+        </div>
+
+        <!-- MODULE 5: DISCOURSE PROCESSING -->
+        <div class="module-content" id="module5">
+            <h2 class="module-title">💬 Module 5: Pragmatic & Discourse Processing</h2>
+          
+            <div class="input-group">
+                <label for="m5-text">Enter Text for Discourse Analysis:</label>
+                <textarea id="m5-text" placeholder="Enter text with pronouns and references for discourse analysis...">The company launched a new product. It received excellent reviews from customers. The CEO was very pleased with the positive response.</textarea>
+            </div>
+            <button class="btn" onclick="analyzeDiscourse()">💬 Analyze Discourse</button>
+            <button class="btn" onclick="resolveReferences()">🔗 Resolve References</button>
+            <button class="btn" onclick="checkCoherence()">📏 Check Coherence</button>
+            <div class="loading" id="m5-loading">
+                <div class="spinner"></div>
+                <p>Processing discourse and resolving references...</p>
+            </div>
+            <div class="results" id="m5-results" style="display:none;"></div>
+        </div>
+
+        <!-- MODULE 6: APPLICATIONS -->
+        <div class="module-content" id="module6">
+            <h2 class="module-title">🎯 Module 6: NLP Applications</h2>
+            
+            <div class="two-column">
+                <div>
+                    <div class="input-group">
+                        <label for="m6-text">Enter Text/Article for Analysis:</label>
+                        <textarea id="m6-text" placeholder="Enter news article or text for comprehensive analysis...">The Indian government announced new digital initiatives to boost rural connectivity. These programs aim to provide internet access to remote villages across the country. Technology experts believe this will revolutionize education and healthcare delivery.</textarea>
+                    </div>
+                    <button class="btn" onclick="analyzeSentiment()">😊 Sentiment Analysis</button>
+                    <button class="btn" onclick="summarizeText()">📝 Summarize Text</button>
+                    <button class="btn" onclick="comprehensiveAnalysis()">🎯 Full Analysis</button>
+                </div>
+                
+                <div>
+                    <div class="input-group">
+                        <label for="m6-question">Ask a Question:</label>
+                        <input type="text" id="m6-question" placeholder="What did the government announce?">
+                    </div>
+                    <button class="btn" onclick="answerQuestion()">❓ Answer Question</button>
+                    
+                    <div class="input-group">
+                        <label for="m6-search">Search Query:</label>
+                        <input type="text" id="m6-search" placeholder="digital initiatives rural">
+                    </div>
+                    <button class="btn" onclick="searchDocuments()">🔍 Search Documents</button>
+                </div>
+            </div>
+            
+            <div class="loading" id="m6-loading">
+                <div class="spinner"></div>
+                <p>Processing applications and generating results...</p>
+            </div>
+            <div class="results" id="m6-results" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+    <script>
+      (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="sWKLDpoxajVw-GBiOxbrY";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+
+</body>
+</html>
+

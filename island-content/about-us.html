@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Meridian Surge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated neural network background */
+        .neural-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .neural-node {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #40e0ff;
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .neural-connection {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #40e0ff, transparent);
+            animation: dataFlow 2s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0; transform: translateX(-50px); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(50px); }
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(64, 224, 255, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #40e0ff;
+            text-shadow: 0 0 10px rgba(64, 224, 255, 0.5);
+        }
+
+        .nav-brand {
+            min-width: auto;
+            font-size: 18px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Logo image styling */
+        .nav-logo {
+            height: 40px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(64, 224, 255, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 15px rgba(64, 224, 255, 0.6));
+            transform: scale(1.05);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: rgba(64, 224, 255, 0.1);
+            border: 1px solid rgba(64, 224, 255, 0.3);
+            border-radius: 25px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(64, 224, 255, 0.2);
+            box-shadow: 0 0 20px rgba(64, 224, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #40e0ff, #ffffff, #ffd700);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(64, 224, 255, 0.5);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { 
+                text-shadow: 0 0 30px rgba(64, 224, 255, 0.5);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+                transform: scale(1.02);
+            }
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #a0a0a0;
+            margin-bottom: 50px;
+        }
+
+        /* Dashboard grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(145deg, rgba(64, 224, 255, 0.05), rgba(255, 215, 0, 0.05));
+            border: 1px solid rgba(64, 224, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(64, 224, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .dashboard-card:hover::before {
+            left: 100%;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(64, 224, 255, 0.5);
+            box-shadow: 0 15px 30px rgba(64, 224, 255, 0.2);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #40e0ff, #ffd700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            animation: iconSpin 8s linear infinite;
+        }
+
+        @keyframes iconSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card-title {
+            font-size: 20px;
+            color: #40e0ff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .card-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #a0a0a0;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            top: 100px;
+            right: 100px;
+            width: 80px;
+            height: 40px;
+            background: linear-gradient(45deg, #87CEEB 50%, #2c3e50 50%);
+            border: 2px solid rgba(64, 224, 255, 0.5);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            box-shadow: 0 0 20px rgba(64, 224, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .toggle-slider::before {
+            content: '☀️';
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        /* Light theme toggle state */
+        .light-theme .theme-toggle {
+            background: linear-gradient(45deg, #FFD700 50%, #87CEEB 50%);
+        }
+
+        .light-theme .toggle-slider {
+            transform: translateX(42px);
+            background: #2c3e50;
+        }
+
+        .light-theme .toggle-slider::before {
+            content: '🌙';
+        }
+
+        /* Add stars effect for dark side */
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: 
+                radial-gradient(1px 1px at 8px 8px, #fff, transparent),
+                radial-gradient(1px 1px at 18px 15px, #fff, transparent),
+                radial-gradient(1px 1px at 30px 10px, #fff, transparent),
+                radial-gradient(1px 1px at 12px 25px, #fff, transparent),
+                radial-gradient(1px 1px at 25px 30px, #fff, transparent);
+            background-size: 40px 40px;
+            opacity: 0.8;
+            animation: twinkle 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Light theme */
+        .light-theme {
+            background: linear-gradient(135deg, #f0f4f8 0%, #d6e8f5 50%, #b8dcf2 100%);
+            color: #1a1a2e;
+        }
+
+        .light-theme .header {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(26, 26, 46, 0.3);
+        }
+
+        .light-theme .nav-btn {
+            background: rgba(26, 26, 46, 0.1);
+            border: 1px solid rgba(26, 26, 46, 0.3);
+            color: #1a1a2e;
+        }
+
+        .light-theme .nav-btn:hover, 
+        .light-theme .nav-btn.active {
+            background: rgba(26, 26, 46, 0.2);
+            box-shadow: 0 0 20px rgba(26, 26, 46, 0.4);
+        }
+
+        .light-theme .dashboard-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(240, 244, 248, 0.8));
+            border: 1px solid rgba(26, 26, 46, 0.2);
+            color: #1a1a2e;
+        }
+
+        .light-theme .card-title {
+            color: #0f3460;
+        }
+
+        .light-theme .card-description {
+            color: #4a5568;
+        }
+
+        .light-theme .page-title {
+            background: linear-gradient(45deg, #0f3460, #1a1a2e, #16213e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .light-theme .subtitle {
+            color: #4a5568;
+        }
+
+        .light-theme .back-btn {
+            background: rgba(26, 26, 46, 0.2);
+            border: 1px solid rgba(26, 26, 46, 0.5);
+            color: #0f3460;
+        }
+
+        .light-theme .back-btn:hover {
+            background: rgba(26, 26, 46, 0.3);
+            box-shadow: 0 0 20px rgba(26, 26, 46, 0.5);
+        }
+
+        /* Back button */
+        .back-btn {
+            position: fixed;
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+            background: rgba(64, 224, 255, 0.2);
+            border: 1px solid rgba(64, 224, 255, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #40e0ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .back-btn:hover {
+            background: rgba(64, 224, 255, 0.3);
+            box-shadow: 0 0 20px rgba(64, 224, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-members {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .header {
+                padding: 15px 20px;
+            }
+
+            .nav-logo {
+                height: 35px;
+                max-width: 150px;
+            }
+
+            .nav-buttons {
+                gap: 10px;
+            }
+
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-bg"></div>
+
+    <header class="header">
+        <div class="logo">
+            <nav>
+                <a href="#" class="nav-brand">
+                    <img src="./profile-pics/dark-ms-logo.png" alt="MeridianSurge" class="nav-logo" id="nav-logo">
+                </a>
+            </nav>
+        </div>
+        <nav class="nav-buttons">
+            <a href="/pre-loader/home-content/index.html" class="nav-btn">Home</a>
+            <a href="./credits.html" class="nav-btn">Credits</a>
+            <a href="#" class="nav-btn active">About Us</a>
+        </nav>
+    </header>
+
+    <a href="/pre-loader/home-content/index.html" class="back-btn">←</a>
+    
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <div class="toggle-slider"></div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">About Us</h1>
+        <p class="subtitle">Meet the curious minds behind the code - three enthusiasts who proved that caffeine, curiosity, and questionable sleep schedules can build cutting-edge tokenization technology</p>
+
+        <div class="dashboard-grid">
+            <!-- Project Overview Card -->
+            <div class="dashboard-card">
+                <div class="card-icon">🧠</div>
+                <h3 class="card-title">AI-Powered Analysis</h3>
+                <p class="card-description">
+                    Our cutting-edge system leverages advanced machine learning algorithms to provide real-time tokenization and comprehensive grammar analysis for multiple languages.
+                </p>
+                <div class="card-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="15">0</div>
+                        <div class="stat-label">Languages</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="99.7">0</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Stack Card -->
+            <div class="dashboard-card">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">Modern Technology</h3>
+                <p class="card-description">
+                    Built with state-of-the-art frameworks including TensorFlow, React, and advanced neural networks for optimal performance and scalability.
+                </p>
+                <div class="card-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="50">0</div>
+                        <div class="stat-label">Response Time</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="1">0</div>
+                        <div class="stat-label">Tokens/sec</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission Card -->
+            <div class="dashboard-card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">Our Mission</h3>
+                <p class="card-description">
+                    To democratize natural language understanding by providing powerful, accessible tools for researchers, developers, and educators worldwide.
+                </p>
+                <div class="card-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="10">0</div>
+                        <div class="stat-label">Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="24">0</div>
+                        <div class="stat-label">Availability</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const logo = document.querySelector('.nav-logo');
+            
+            body.classList.toggle('light-theme');
+            
+            if (body.classList.contains('light-theme')) {
+                logo.src = './profile-pics/light-ms-logo.png';
+                localStorage.setItem('theme', 'light');
+            } else {
+                logo.src = './profile-pics/dark-ms-logo.png';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const logo = document.querySelector('.nav-logo');
+            
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                logo.src = './profile-pics/light-ms-logo.png';
+            } else {
+                logo.src = './profile-pics/dark-ms-logo.png';
+            }
+        });
+
+        // Typewriter effect for numbers
+        function animateValue(element, start, end, duration, suffix = '') {
+            const range = end - start;
+            const minTimer = 50;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            
+            stepTime = Math.max(stepTime, minTimer);
+            
+            const startTime = new Date().getTime();
+            const endTime = startTime + duration;
+            let timer;
+
+            function run() {
+                const now = new Date().getTime();
+                const remaining = Math.max((endTime - now) / duration, 0);
+                const value = Math.round(end - (remaining * range));
+                
+                if (suffix === '%') {
+                    element.innerHTML = value.toFixed(1) + suffix;
+                } else if (suffix === 'ms') {
+                    element.innerHTML = value + suffix;
+                } else if (suffix === 'M+') {
+                    element.innerHTML = value + suffix;
+                } else if (suffix === 'K+') {
+                    element.innerHTML = value + suffix;
+                } else if (suffix === '/7') {
+                    element.innerHTML = value + suffix;
+                } else if (suffix === '+') {
+                    element.innerHTML = value + suffix;
+                } else {
+                    element.innerHTML = value;
+                }
+                
+                if (value == end) {
+                    clearInterval(timer);
+                }
+            }
+            
+            timer = setInterval(run, stepTime);
+            run();
+        }
+
+        // Intersection Observer for triggering animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const statValue = entry.target;
+                    const targetValue = parseFloat(statValue.getAttribute('data-target'));
+                    const label = statValue.parentElement.querySelector('.stat-label').textContent;
+                    
+                    // Determine suffix based on label and value
+                    let suffix = '';
+                    if (label === 'Languages') {
+                        suffix = '+';
+                    } else if (label === 'Accuracy') {
+                        suffix = '%';
+                    } else if (label === 'Response Time') {
+                        suffix = 'ms';
+                    } else if (label === 'Tokens/sec') {
+                        suffix = 'M+';
+                    } else if (label === 'Users') {
+                        suffix = 'K+';
+                    } else if (label === 'Availability') {
+                        suffix = '/7';
+                    }
+                    
+                    animateValue(statValue, 0, targetValue, 2000, suffix);
+                    observer.unobserve(statValue);
+                }
+            });
+        });
+
+        // Start observing when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach((statValue) => {
+                observer.observe(statValue);
+            });
+        });
+    </script>
+</body>
+</html>     

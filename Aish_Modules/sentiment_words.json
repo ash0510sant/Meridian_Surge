@@ -1,0 +1,15 @@
+{
+  "positive": [
+    "good", "great", "excellent", "amazing", "wonderful", "fantastic", "positive",
+    "happy", "joy", "love", "best", "perfect", "awesome", "outstanding", "incredible",
+    "brilliant", "superb", "magnificent", "nice", "delightful", "remarkable", "successful",
+    "beneficial", "strong", "improved", "efficient", "excited", "celebrate", "progress",
+    "advancement", "innovative", "supportive", "win", "victory", "peaceful", "hope", "bright"
+  ],
+  "negative": [
+    "bad", "terrible", "awful", "horrible", "worst", "hate", "angry", "sad", "negative",
+    "poor", "disappointing", "useless", "wrong", "failed", "disaster", "crisis", "problem",
+    "weak", "decline", "loss", "damage", "unhappy", "tragic", "risk", "danger", "unfair",
+    "fear", "delay", "complaint", "struggle", "corruption", "pain", "hurt", "critical", "collapse"
+  ]
+}

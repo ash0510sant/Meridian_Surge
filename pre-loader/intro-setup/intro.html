@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeridianSurge - Intro</title>
+    <link rel="stylesheet" href="intro-styles.css">
+</head>
+<body>
+    <div class="video-container">
+        <!-- Main intro video -->
+        <video id="introVideo" autoplay preload="auto">
+            <source src="intro-video.mp4" type="video/mp4">
+            <source src="intro-video.webm" type="video/webm">
+            <source src="intro-video.mov" type="video/quicktime">
+            <source src="intro-video.avi" type="video/avi">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Play/Pause button overlay -->
+        <div class="play-pause-overlay" id="playPauseOverlay">
+            <button class="play-pause-btn" id="playPauseBtn">
+                <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Skip button -->
+        <div class="skip-container">
+            <button class="skip-btn" id="skipBtn">
+                <span>Skip</span>
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Loading indicator -->
+        <div class="loading-indicator" id="loadingIndicator">
+            <div class="spinner"></div>
+            <p>Loading video...</p>
+        </div>
+        
+        <!-- Video controls info (optional) -->
+        <div class="video-info" id="videoInfo">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+        </div>
+    </div>
+    
+    <script src="intro-script.js"></script>
+</body>
+</html>
