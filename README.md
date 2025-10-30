@@ -17,7 +17,7 @@ Module 5 – Pragmatic & Discourse Processing Context-aware analysis to interpre
 
 Module 6 – Applications Integration Regional News Analysis Dashboard for real-time monitoring of multilingual news. Question Answering System using context-driven NLP models. Integration with APIs for live news feeds and user queries. Support for voice-based input and output in multiple languages.
 
-🛠️ Tech Stack Languages: Python, JavaScript Libraries/Frameworks: NLTK, spaCy, Transformers (Hugging Face), Gensim, CoreNLP Databases: MongoDB / PostgreSQL APIs: News API, Google Translate API, Speech-to-Text APIs Deployment: Flask / FastAPI, Docker
+🛠️ Tech Stack Languages: Python, JavaScript Libraries/Frameworks: NLTK, spaCy, Gensim, CoreNLP APIs: News API, Google Translate API, Speech-to-Text APIs
 
 📊 Workflow Overview Data Acquisition – Collect multilingual news from APIs and local sources. Preprocessing – Clean, normalize, and tokenize data. NLP Pipeline Processing – Apply word, syntax, semantic, and pragmatic analysis. Insights & Output – Generate summaries, extract facts, answer questions. Integration – Display via dashboards, APIs, and chatbot interfaces.
 
